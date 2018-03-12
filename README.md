@@ -23,7 +23,7 @@ The aim of this project is to get as much information as we can from the daily f
   
   **5. Print collected information.**  
   
-  **6. (Optional) Get the cover of the book.**
+  **6. (Optional) Get the cover of the book.**  
   In this spet we will find the image (img) field to download to our directory the cover of the book.
   
   **7. (Optional) Send Book information to an email address.**  
