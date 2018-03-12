@@ -22,8 +22,11 @@ The aim of this project is to get as much information as we can from the daily f
   a class to ease the webScraping process.
   
   **5. Print collected information.**  
-    
-  **6. (Optional) Send Book information to an email address.**  
+  
+  **6. (Optional) Get the cover of the book.**
+  In this spet we will find the image (img) field to download to our directory the cover of the book.
+  
+  **7. (Optional) Send Book information to an email address.**  
   Using the [Simple Mail Transfer Protocol](https://docs.python.org/2/library/smtplib.html) (SMTP) we will send all the collected 
   information to a private email address.  
   `import smtplib`
