@@ -1,7 +1,7 @@
 # WebScraping Project.
 
 ## 1. Introduction.
-The aim of this project is to get as much information as we can from the daily free eBook from [Packtpub website](www.packtpub.com).
+The aim of this project is to get as much information as we can from the daily free eBook from [Packtpub website](https://www.packtpub.com/).
 
 ## 2. Project composition.
 
