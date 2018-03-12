@@ -27,6 +27,16 @@ class BookClient(object):
             print("Today there is no book available, sorry :(")
             exit(0)
 
+    def __parse_info(self, book_summary_html):
+        loops = 0
+
+        for section in book_summary_html:
+            if loops is 7:
+                book_desc_html = section
+                self.__check_none(book_desc_html)
+            loops += 1
+        return book_desc_html
+
     def get_book_info(self):
         html = self.__get_html()
 
@@ -34,6 +44,8 @@ class BookClient(object):
         book_summary_html = soup.find("div", "dotd-main-book-summary float-left")
         self.__check_none(book_summary_html)
         book_title_html = book_summary_html.find("div", "dotd-title")
+
+        book_desc_html = self.__parse_info(book_summary_html)
 
 
 if __name__ == "__main__":
