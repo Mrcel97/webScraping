@@ -34,7 +34,7 @@ class BookClient(object):
         book_summary_html = soup.find("div", "dotd-main-book-summary float-left")
         self.__check_none(book_summary_html)
         book_title_html = book_summary_html.find("div", "dotd-title")
-        
+
 
 if __name__ == "__main__":
     packtClient = BookClient()
