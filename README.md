@@ -31,3 +31,21 @@ The aim of this project is to get as much information as we can from the daily f
   Using the [Simple Mail Transfer Protocol](https://docs.python.org/2/library/smtplib.html) (SMTP) we will send all the collected 
   information to a private email address.  
   `import smtplib`
+  
+  **8. (Optional) Send Book title and cover using twitter.**  
+  Using [Twitter API](https://github.com/geduldig/TwitterAPI) post a new tweet which will contain the title of the book and a picture of
+  its cover. Here we will not post the book
+  description or its strong points due the Twitter characters restriction.
+  
+ ## 3. Imports.  
+ Application needed imports are:
+ 
+	import urllib
+	import urllib2
+	import bs4
+	import smtplib
+	from email.mime.text import MIMEText
+	from email.mime.multipart import MIMEMultipart
+	from email.mime.base import MIMEBase
+	from email import encoders
+	from TwitterAPI import TwitterAPI
