@@ -2,11 +2,8 @@
 # -*- coding: utf-8 -*-
 #vim: set filencoding=utf-8 :
 
-"""
-Client weatherUnderground
-.json pot canviar-se per .xml normalment
-"""
 import urllib2
+import urllib
 import bs4
 
 
@@ -20,6 +17,12 @@ class BookClient(object):
         html = f.read()
         f.close()
         return html
+
+    def get_jpg(self, soup):
+        picture_html = soup.find("div", "dotd-main-book-image float-left")
+        images = picture_html.findAll('img')[0]['src']
+        URL = "https://" + images.split("//")[1]
+        urllib.urlretrieve(URL, "bookCover.jpg")
 
     @staticmethod
     def __check_none(parameter):
@@ -57,6 +60,7 @@ class BookClient(object):
         html = self.__get_html()
 
         soup = bs4.BeautifulSoup(html, "lxml")
+        self.get_jpg(soup)
         book_summary_html = soup.find("div", "dotd-main-book-summary float-left")
         book_title_html = book_summary_html.find("div", "dotd-title")
         book_title_html = self.__check_none(book_title_html)
