@@ -24,8 +24,15 @@ class BookClient(object):
     @staticmethod
     def __check_none(parameter):
         if parameter is None:
-            print("Today there is no book available, sorry :(")
-            exit(0)
+            return "No data provided."
+        else:
+            return parameter
+
+    @staticmethod
+    def __print_book_info(title, desc, strong_points):
+        print title.text.strip()
+        print desc.text.strip()
+        for obj in strong_points: print("   - " + obj)
 
     def __parse_info(self, book_summary_html):
         loops = 0
@@ -34,10 +41,10 @@ class BookClient(object):
         for section in book_summary_html:
             if loops is 7:
                 book_desc_html = section
-                self.__check_none(book_desc_html)
+                book_desc_html = self.__check_none(book_desc_html)
             if loops is 9:
                 details_html = section.find("ul")
-                self.__check_none(details_html)
+                details_html = self.__check_none(details_html)
                 for strong_point in details_html:
                     try:
                         strong_points.append(strong_point.text)
@@ -51,10 +58,12 @@ class BookClient(object):
 
         soup = bs4.BeautifulSoup(html, "lxml")
         book_summary_html = soup.find("div", "dotd-main-book-summary float-left")
-        self.__check_none(book_summary_html)
         book_title_html = book_summary_html.find("div", "dotd-title")
+        book_title_html = self.__check_none(book_title_html)
 
         book_desc_html, strong_points = self.__parse_info(book_summary_html)
+
+        self.__print_book_info(book_title_html, book_desc_html, strong_points)
 
 
 if __name__ == "__main__":
