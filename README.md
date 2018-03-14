@@ -3,7 +3,12 @@
 ## 1. Introduction.
 The aim of this project is to get as much information as we can from the daily free eBook from [Packtpub website](https://www.packtpub.com/).
 
-## 2. Project composition.
+## 2. Previous information.  
+In code lines 13 and 14 replace email and password for your own personal information.  
+`13. email_user = ["example@gmail.com", "password"]`  
+`14. email_send = "example@gmail.com"`
+
+## 3. Project composition.
 
   **1. Get all the HTML from Packtpub.**   
   This step sonsists in getting all webpage html information using [urllib2](https://docs.python.org/2/library/urllib2.html).  
@@ -21,23 +26,21 @@ The aim of this project is to get as much information as we can from the daily f
   We will use a loop to collect the book strong points from the `<dive>` objects from the website because this objects does not provide any
   a class to ease the webScraping process.
   
-  **5. Print collected information.**  
-  
-  **6. (Optional) Get the cover of the book.**  
+  **5. (Optional) Get the cover of the book.**  
   In this spet we will find the image (img) field to download to our directory the cover of the book.  
   `import urllib`
   
-  **7. (Optional) Send Book information to an email address.**  
+  **6. (Optional) Send Book information to an email address.**  
   Using the [Simple Mail Transfer Protocol](https://docs.python.org/2/library/smtplib.html) (SMTP) we will send all the collected 
   information to a private email address.  
   `import smtplib`
   
-  **8. (Optional) Send Book title and cover using twitter.**  
+  **7. (Optional) Send Book title and cover using twitter.**  
   Using [Twitter API](https://github.com/geduldig/TwitterAPI) post a new tweet which will contain the title of the book and a picture of
   its cover. Here we will not post the book
   description or its strong points due the Twitter characters restriction.
   
- ## 3. Imports.  
+ ## 4. Imports.  
  Application needed imports are:
  
 	import urllib
