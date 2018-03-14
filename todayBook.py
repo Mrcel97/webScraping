@@ -1,10 +1,17 @@
 #!/user/bin/env python
 # -*- coding: utf-8 -*-
-#vim: set filencoding=utf-8 :
 
 import urllib2
 import urllib
 import bs4
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+
+email_user = ["example@gmail.com", "password"]
+email_send = "example@gmail.com"
 
 
 class BookClient(object):
@@ -18,7 +25,8 @@ class BookClient(object):
         f.close()
         return html
 
-    def get_jpg(self, soup):
+    @staticmethod
+    def get_jpg(soup):
         picture_html = soup.find("div", "dotd-main-book-image float-left")
         images = picture_html.findAll('img')[0]['src']
         URL = "https://" + images.split("//")[1]
@@ -31,14 +39,54 @@ class BookClient(object):
         else:
             return parameter
 
+    def send_email(self, msg):
+        filename = 'bookCover.jpg'
+        attachment = open(filename, 'rb')
+
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload(attachment.read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachment", filename=filename)
+
+        msg.attach(part)
+        text = msg.as_string()
+
+        self.__send_server(text)
+
     @staticmethod
-    def __print_book_info(title, desc, strong_points):
-        print title.text.strip()
-        print desc.text.strip()
-        for obj in strong_points: print("   - " + obj)
+    def generate_msg(title, description, strong_points):
+
+        message = '\n' + title.text.strip() + '\n\n'
+        message = message + description.text.strip() + "\n\n"
+        for obj in strong_points:
+            message = message + "   - " + obj + "\n"
+
+        msg = MIMEMultipart()
+        msg['From'] = email_user[0]
+        msg['To'] = email_send
+        msg['Subject'] = "Packtpub Daily Free eBook"
+
+        body = message.encode('utf-8')
+        msg.attach(MIMEText(body, 'plain'))
+        return msg
+
+    @staticmethod
+    def __send_server(text):
+        print "Sending email..."
+        try:
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.ehlo()
+            server.starttls()
+            server.login(email_user[0], email_user[1])
+            server.sendmail(email_user, email_send, text)
+            server.close()
+            print "Successfully sent email."
+        except:
+            print "Error while sending email (Service unavailable/Wrong authentication)."
 
     def __parse_info(self, book_summary_html):
         loops = 0
+        book_desc_html = "No data provided."
         strong_points = []
 
         for section in book_summary_html:
@@ -67,9 +115,11 @@ class BookClient(object):
 
         book_desc_html, strong_points = self.__parse_info(book_summary_html)
 
-        self.__print_book_info(book_title_html, book_desc_html, strong_points)
+        return book_title_html, book_desc_html, strong_points
 
 
 if __name__ == "__main__":
     packtClient = BookClient()
-    packtClient.get_book_info()
+    title, description, strong_points = packtClient.get_book_info()
+    msg = packtClient.generate_msg(title, description, strong_points)
+    packtClient.send_email(msg)
