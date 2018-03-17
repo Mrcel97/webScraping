@@ -6,7 +6,13 @@ The aim of this project is to get as much information as we can from the daily f
 ## 2. Previous information.  
 In code lines 13 and 14 replace email and password for your own personal information.  
 `13. email_user = ["example@gmail.com", "password"]`  
-`14. email_send = "example@gmail.com"`
+`14. email_send = "example@gmail.com"`  
+
+In code lines 90 to 93 replace deffault keys for your own personal [twitterAPI](https://developer.twitter.com/) keys.  
+`90. access_token = 'ACCESS_TOKEN'`  
+`91. access_token_secret = 'SECRET_ACCESS_TOKEN'`  
+`92. consumer_key = 'CONSUMER_KEY'`  
+`93. consumer_secret = 'CONSUMER_SECRET'`
 
 ## 3. Project composition.
 
