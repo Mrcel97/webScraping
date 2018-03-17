@@ -86,7 +86,7 @@ class BookClient(object):
 
     @staticmethod
     def send_tweet(message):
-        print "\n Posting on Twitter..."
+        print "\nPosting on Twitter..."
         access_token = 'ACCESS_TOKEN'
         access_token_secret = 'SECRET_ACCESS_TOKEN'
         consumer_key = 'CONSUMER_KEY'
