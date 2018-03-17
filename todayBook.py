@@ -72,7 +72,7 @@ class BookClient(object):
 
     @staticmethod
     def __send_server(text):
-        print "Sending email..."
+        print "\nSending email..."
         try:
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.ehlo()
@@ -86,7 +86,7 @@ class BookClient(object):
 
     @staticmethod
     def send_tweet(message):
-        print "Posting on Twitter..."
+        print "\n Posting on Twitter..."
         access_token = 'ACCESS_TOKEN'
         access_token_secret = 'SECRET_ACCESS_TOKEN'
         consumer_key = 'CONSUMER_KEY'
@@ -101,7 +101,7 @@ class BookClient(object):
         if code is not 200:
             print "Error while posting on Twitter (Service unavailable/Wrong authentication)."
             return
-        print "Successfully post."
+        print "\Successfully post."
 
     def __parse_info(self, book_summary_html):
         loops = 0
@@ -123,6 +123,12 @@ class BookClient(object):
             loops += 1
         return book_desc_html, strong_points
 
+    @staticmethod
+    def __print_info(title, description, strong_points):
+        print title.text.strip()
+        print description.text.strip()
+        for obj in strong_points: print("   - " + obj)
+
     def get_book_info(self):
         html = self.__get_html()
 
@@ -133,6 +139,7 @@ class BookClient(object):
         book_title_html = self.__check_none(book_title_html)
 
         book_desc_html, strong_points = self.__parse_info(book_summary_html)
+        self.__print_info(book_title_html, book_desc_html, strong_points)
         return book_title_html, book_desc_html, strong_points
 
 
