@@ -50,3 +50,4 @@ In code lines 90 to 93 replace deffault keys for your own personal [twitterAPI](
  Application needed libraries are:  
  * BeautifulSoup4 (4.6.0): `pip intall beautifulsoup4`  
  * lxml XML toolkit (4.1.1): `pip install lxml`
+ * Twitter API (2.5.0): `pip install TwitterAPI`
