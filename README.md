@@ -41,6 +41,6 @@ In code lines 13 and 14 replace email and password for your own personal informa
   description or its strong points due the Twitter characters restriction.
   
  ## 4. Libraries.  
- Application needed imports are:  
+ Application needed libraries are:  
  * BeautifulSoup4 (4.6.0): `pip intall beautifulsoup4`  
  * lxml XML toolkit (4.1.1): `pip install lxml`
