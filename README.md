@@ -6,7 +6,13 @@ The aim of this project is to get as much information as we can from the daily f
 ## 2. Previous information.  
 In code lines 13 and 14 replace email and password for your own personal information.  
 `13. email_user = ["example@gmail.com", "password"]`  
-`14. email_send = "example@gmail.com"`
+`14. email_send = "example@gmail.com"`  
+
+In code lines 90 to 93 replace deffault keys for your own personal [twitterAPI](https://developer.twitter.com/) keys.  
+`90. access_token = 'ACCESS_TOKEN'`  
+`91. access_token_secret = 'SECRET_ACCESS_TOKEN'`  
+`92. consumer_key = 'CONSUMER_KEY'`  
+`93. consumer_secret = 'CONSUMER_SECRET'`
 
 ## 3. Project composition.
 
@@ -40,15 +46,7 @@ In code lines 13 and 14 replace email and password for your own personal informa
   its cover. Here we will not post the book
   description or its strong points due the Twitter characters restriction.
   
- ## 4. Imports.  
- Application needed imports are:
- 
-	import urllib
-	import urllib2
-	import bs4
-	import smtplib
-	from email.mime.text import MIMEText
-	from email.mime.multipart import MIMEMultipart
-	from email.mime.base import MIMEBase
-	from email import encoders
-	from TwitterAPI import TwitterAPI
+ ## 4. Libraries.  
+ Application needed libraries are:  
+ * BeautifulSoup4 (4.6.0): `pip intall beautifulsoup4`  
+ * lxml XML toolkit (4.1.1): `pip install lxml`
