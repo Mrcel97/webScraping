@@ -9,17 +9,17 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+from TwitterAPI import TwitterAPI
 
 email_user = ["example@gmail.com", "password"]
 email_send = "example@gmail.com"
+url = "https://www.packtpub.com/packt/offers/free-learning/"
 
 
 class BookClient(object):
 
     @staticmethod
     def __get_html():
-        url = "https://www.packtpub.com/packt/offers/free-learning/"
-
         f = urllib2.urlopen(url)
         html = f.read()
         f.close()
@@ -84,6 +84,25 @@ class BookClient(object):
         except:
             print "Error while sending email (Service unavailable/Wrong authentication)."
 
+    @staticmethod
+    def send_tweet(message):
+        print "Posting on Twitter..."
+        access_token = 'ACCESS_TOKEN'
+        access_token_secret = 'SECRET_ACCESS_TOKEN'
+        consumer_key = 'CONSUMER_KEY'
+        consumer_secret = 'CONSUMER_SECRET'
+
+        api = TwitterAPI(consumer_key, consumer_secret, access_token, access_token_secret)
+
+        file = open('bookCover.jpg', 'rb')
+        data = file.read()
+        r = api.request('statuses/update_with_media', {'status': message}, {'media[]': data})
+        code = r.status_code
+        if code is not 200:
+            print "Error while posting on Twitter (Service unavailable/Wrong authentication)."
+            return
+        print "Successfully post."
+
     def __parse_info(self, book_summary_html):
         loops = 0
         book_desc_html = "No data provided."
@@ -123,3 +142,4 @@ if __name__ == "__main__":
     title, description, strong_points = packtClient.get_book_info()
     msg = packtClient.generate_msg(title, description, strong_points)
     packtClient.send_email(msg)
+    packtClient.send_tweet(title.text.strip() + '\n' + url)  # max. 280 characters
