@@ -133,7 +133,6 @@ class BookClient(object):
         book_title_html = self.__check_none(book_title_html)
 
         book_desc_html, strong_points = self.__parse_info(book_summary_html)
-
         return book_title_html, book_desc_html, strong_points
 
 
