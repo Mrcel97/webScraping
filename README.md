@@ -43,8 +43,8 @@ In code lines 90 to 93 replace deffault keys for your own personal [twitterAPI](
   
   **7. (Optional) Send Book title and cover using twitter.**  
   Using [Twitter API](https://github.com/geduldig/TwitterAPI) post a new tweet which will contain the title of the book and a picture of
-  its cover. Here we will not post the book
-  description or its strong points due the Twitter characters restriction.
+  its cover. Here we will not post the book description or its strong points due the Twitter characters restriction.  
+  [Twitter Account](https://twitter.com/today_ebook).
   
  ## 4. Libraries.  
  Application needed libraries are:  
