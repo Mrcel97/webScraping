@@ -1,0 +1,10 @@
+beautifulsoup4==4.6.0
+certifi==2018.1.18
+chardet==3.0.4
+idna==2.6
+lxml==4.1.1
+oauthlib==2.0.6
+requests==2.18.4
+requests-oauthlib==0.8.0
+TwitterAPI==2.5.0
+urllib3==1.22
